@@ -1,12 +1,11 @@
 import requests
 from urllib.parse import urlparse
-from pprint import pprint
 import os
 import datetime
 
 
 def download_image(filename, folder, url, params=None):
-
+    os.makedirs(folder, exist_ok=True)
     response = requests.get(url, params=params)
     response.raise_for_status()
     path = f'{folder}/{filename}'
@@ -17,7 +16,7 @@ def download_image(filename, folder, url, params=None):
 
 def fetch_nasa_apod(api_key, folder = 'images'):
     url = 'https://api.nasa.gov/planetary/apod'
-    response = requests.get(url, params = {'api_key': api_key, 'count': 30})
+    response = requests.get(url, params={'api_key': api_key, 'count': 30})
     response.raise_for_status()
     for number, photo in enumerate(response.json()):
         if photo['media_type'] == 'image':
@@ -49,6 +48,6 @@ def fetch_spacex_last_launch(folder = 'images', id = '5eb87d47ffd86e000604b38a')
         download_image(filename, folder, link)
 
 api_key = 'm9HmwKyIzN2Uihp5bkoZj8XD8F9M9090L2G3S4r5'
-fetch_spacex_last_launch(folder = 'images', id = '5eb87d47ffd86e000604b38a') 
-fetch_nasa_apod(api_key, folder = 'images')
-fetch_nasa_epic(api_key, folder = 'images')
+fetch_spacex_last_launch(folder='images', id='5eb87d47ffd86e000604b38a')
+fetch_nasa_apod(api_key, folder='images')
+fetch_nasa_epic(api_key, folder='images')
