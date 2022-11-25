@@ -12,6 +12,7 @@ if __name__ == "__main__":
     files_in_dirs = os.listdir('images')
     for files_in_dir in files_in_dirs:
         path = os.path.join(files_in_dir)
-        file = os.path.join(str('images'), path)
-        post_photos_to_telegram('@space_download', file)
-        sleep(14400)
+        file_path = os.path.join(('images'), path)
+        post_photos_to_telegram('@space_download', file_path)
+        delay_seconds = 14400
+        sleep(delay)
