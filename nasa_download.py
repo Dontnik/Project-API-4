@@ -1,13 +1,15 @@
 import requests
+import os
 import datetime
 from tools import download_image
 from tools import get_extension
 
-api_key = 'm9HmwKyIzN2Uihp5bkoZj8XD8F9M9090L2G3S4r5'
+api_key = os.getenv('API_KEY')
 def fetch_nasa_apod(api_key, folder = 'images'):
-    api_key = 'm9HmwKyIzN2Uihp5bkoZj8XD8F9M9090L2G3S4r5'
+    api_key = os.getenv('API_KEY')
     url = 'https://api.nasa.gov/planetary/apod'
-    response = requests.get(url, params={'api_key': api_key, 'count': 30})
+    count = 30
+    response = requests.get(url, params={'api_key': api_key, 'count': count})
     response.raise_for_status()
     for number, photo in enumerate(response.json()):
         if photo['media_type'] == 'image':
@@ -16,7 +18,7 @@ def fetch_nasa_apod(api_key, folder = 'images'):
             download_image(image_name, folder, link)
 
 def fetch_nasa_epic(api_key, folder = 'images'):
-    api_key = 'm9HmwKyIzN2Uihp5bkoZj8XD8F9M9090L2G3S4r5'
+    api_key = os.getenv('API_KEY')
     url = 'https://api.nasa.gov/EPIC/api/natural/images'
     response = requests.get(url, params = {'api_key': api_key})
     response.raise_for_status()

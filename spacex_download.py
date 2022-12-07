@@ -1,5 +1,6 @@
 import requests
 from tools import download_image
+import os
 
 def fetch_spacex_last_images(folder = 'images', id = '5eb87d47ffd86e000604b38a'):
     url = f'https://api.spacexdata.com/v5/launches/{id}'
@@ -10,5 +11,7 @@ def fetch_spacex_last_images(folder = 'images', id = '5eb87d47ffd86e000604b38a')
         download_image(filename, folder, link)
 
 if __name__ == "__main__":
+    launch_id = os.getenv('LAUNCH_ID')
+    fetch_spacex_last_images(folder='images', id=launch_id)
 
-    fetch_spacex_last_images(folder='images', id='5eb87d47ffd86e000604b38a')
+
