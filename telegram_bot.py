@@ -1,19 +1,27 @@
-import telegram
 import os
 from time import sleep
+import telegram
+import random
+from dotenv import load_dotenv, find_dotenv
 
-def post_photos_to_telegram(chat_id, path):
+
+
+def post_photos_to_telegram(chat_id, path, bot):
     with open(path, 'rb') as photo:
-
-        bot.send_photo(chat_id=chat_id, photo=open(path, 'rb'))
+        bot.send_message(text='Photo of the day', chat_id=chat_id)
+        bot.send_photo(chat_id=chat_id, photo=photo)
 
 
 
 if __name__ == "__main__":
+    load_dotenv(find_dotenv())
+    chat_id = os.getenv('CHAT_ID')
     bot_token = os.getenv('BOT_TOKEN')
+    bot = telegram.Bot(token=bot_token)
     files_in_dirs = os.listdir('images')
-    for files_in_dir in files_in_dirs:
-        path = os.path.join(files_in_dir)
+    while True:
+        path = random.choice(files_in_dirs)
         file_path = os.path.join(('images'), path)
-        delay_seconds = 14400
+        post_photos_to_telegram(chat_id, file_path, bot)
+        delay_seconds = 36000
         sleep(delay_seconds)
