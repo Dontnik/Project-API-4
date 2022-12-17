@@ -18,7 +18,6 @@ def fetch_nasa_apod(api_key, folder = 'images'):
             download_image(image_name, folder, link)
 
 def fetch_nasa_epic(api_key, folder = 'images'):
-    api_key = os.getenv('API_KEY')
     url = 'https://api.nasa.gov/EPIC/api/natural/images'
     response = requests.get(url, params = {'api_key': api_key})
     response.raise_for_status()
@@ -30,6 +29,6 @@ def fetch_nasa_epic(api_key, folder = 'images'):
         download_image(f'{pic_name}.png', folder, pic_url, params={'api_key': api_key})
 
 if __name__ == "__main__":
-
+    api_key = os.getenv('API_KEY')
     fetch_nasa_apod(api_key, folder='images')
     fetch_nasa_epic(api_key, folder='images')
