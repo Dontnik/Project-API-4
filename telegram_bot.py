@@ -15,8 +15,8 @@ def post_photos_to_telegram(chat_id, path, bot):
 
 if __name__ == "__main__":
     load_dotenv(find_dotenv())
-    chat_id = os.getenv('CHAT_ID')
-    bot_token = os.getenv('BOT_TOKEN')
+    chat_id = os.getenv('TG_CHAT_ID')
+    bot_token = os.getenv('TG_BOT_TOKEN')
     bot = telegram.Bot(token=bot_token)
     files_in_dirs = os.listdir('images')
     while True:

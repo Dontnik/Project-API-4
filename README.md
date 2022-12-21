@@ -15,8 +15,8 @@
 
 
 ```
-TOKEN = 23erFGHUI(/cdkr94852u9ovwetygbuq
-chat_id = @space_download
+TG_BOT_TOKEN = 23erFGHUI(/cdkr94852u9ovwetygbuq
+TG_CHAT_ID = @space_download
 ```
 
 Python3 должен быть уже установлен. Затем используйте pip (или pip3, если есть конфликт с Python2) для установки зависимостей:
