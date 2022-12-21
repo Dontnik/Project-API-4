@@ -4,9 +4,7 @@ import datetime
 from tools import download_image
 from tools import get_extension
 
-api_key = os.getenv('API_KEY')
 def fetch_nasa_apod(api_key, folder = 'images'):
-    api_key = os.getenv('API_KEY')
     url = 'https://api.nasa.gov/planetary/apod'
     count = 30
     response = requests.get(url, params={'api_key': api_key, 'count': count})
